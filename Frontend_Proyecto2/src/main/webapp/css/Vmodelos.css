@@ -1,0 +1,124 @@
+.fondo {
+    background-image: url(https://tesla-cdn.thron.com/delivery/public/image/tesla/a269d7b4-87a9-4057-9ac5-2565e56a188e/bvlatuR/std/4096x2560/Homepage-Model-3-Desktop-LHD?quality=auto-medium&amp;format=auto);
+    background-size: cover;
+    background-position: center;
+    filter: brightness(0.85);
+    animation-name: presentacion;
+    animation-duration: 60s;
+    animation-iteration-count: infinite;
+    z-index: 1;
+    
+}
+.cuerpo {
+    margin: 100px 0px;
+    background-size: cover;
+    background-position: center;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.form_Boton{
+    grid-column: 2/4;
+    position: relative;
+}
+
+#agregar{
+    width: 100%;
+    min-width: 400px;
+    color: #000;
+    border-color: #000;
+    border-width: 2px;
+    background: linear-gradient(90deg, rgba(122,73,235,1) 22%, rgba(29,238,113,1) 81%);
+    border: 1px solid #eee;
+}
+
+#agregar:hover{
+    cursor: pointer;
+    background: linear-gradient(90deg, rgba(29,238,113,1) 22%, rgba(122,73,235,1) 81%);    filter: brightness(0.85);
+}
+table {
+  border-collapse: collapse;
+  width: 75%;
+  overflow-y: scroll;
+  min-width: 400px;
+  grid-column: 2/4;
+}
+
+/* Estilos para las celdas de encabezado */
+th {
+  background-color: #0077be;
+  color: white;
+  font-weight: bold;
+  padding: 10px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+/* Estilos para las celdas de datos */
+td {
+  background-color: #f5f5f5;
+  padding: 10px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+/* Estilos para las filas impares */
+tr:nth-child(odd) {
+  background-color: #ffffff;
+}
+
+/* Estilos para las filas pares */
+tr:nth-child(even) {
+  background-color: #e9f2f9;
+}
+
+.cuerpo-form {
+    grid-row: 1 / 2; 
+}
+
+.cuerpo-table {
+    grid-row: 2 / 3;
+}
+
+@Keyframes presentacion {
+    25% {
+        background: url(https://tesla-cdn.thron.com/delivery/public/image/tesla/05a76324-947e-453b-a628-8b2d759756fa/bvlatuR/std/2880x1800/Homepage-Model-X-Desktop-LHD?quality=auto-medium&amp;format=auto);
+        background-size: cover;
+        background-position: center;
+    }
+    50% {
+        background: url(https://tesla-cdn.thron.com/delivery/public/image/tesla/898c2038-c428-452c-84bf-034d5c48ca8e/bvlatuR/std/4096x2560/Model-S-homepage-desktop);
+        background-size: cover;
+        background-position: center;
+    }
+    75% {
+        background: url(https://tesla-cdn.thron.com/delivery/public/image/tesla/dfa1ee09-8585-422e-a32a-067e14159aa0/bvlatuR/std/2880x2400/Homepage-Model-Y-Global-Desktop?quality=auto-medium&amp;format=auto);
+        background-size: cover;
+        background-position: center;
+    }
+    100% {
+        background: url(https://tesla-cdn.thron.com/delivery/public/image/tesla/a269d7b4-87a9-4057-9ac5-2565e56a188e/bvlatuR/std/4096x2560/Homepage-Model-3-Desktop-LHD?quality=auto-medium&amp;format=auto);
+        background-size: cover;
+        background-position: center;
+    }
+}
+
+.add_body .fondo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.add_body .fondo form{
+    background: #dde;
+    border-radius: 5px;
+    outline: 2px solid #999;
+    display:flex;
+    flex-direction:column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 0;
+}

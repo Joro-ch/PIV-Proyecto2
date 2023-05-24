@@ -1,0 +1,124 @@
+
+.cuerpo {
+    grid-row: 2 / 3;
+    background: url(https://a-static.besthdwallpaper.com/gran-turismo-sport-lamborghini-veneno-wallpaper-1280x768-21465_13.jpg);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    display: flex;
+    height: 80vh;
+    color: #fff;
+    flex-direction: column;
+}
+
+.cuerpo-form {
+    display: grid; 
+    background: rgba(0,0,0,0.8);
+    width: 500px;
+    height: 500px;
+    margin: 50px auto;
+    align-self: center;
+    text-align: center;
+    border-radius: 5px;
+    outline: 2px solid #999;
+    grid-template-rows: repeat(5, 1fr) 20px 1fr;
+    grid-template-columns: 50px 1fr;
+}
+
+.cuerpo-form__titulo {
+    grid-column: 1 / 3;
+    grid-row: 1 / 2;
+    letter-spacing: 3px;
+}
+
+.cuerpo-form__image {
+    grid-column: 1 / 3;
+    grid-row: 2 / 3;
+    width: 75px;
+    height: 75px;
+    justify-self: center;
+}
+
+.cuerpo-form__item:not(:nth-child(2)) {
+    height: 40px;
+    justify-self: center;
+    align-self: center;
+}
+
+.cuerpo-form__input-Id-icon, .cuerpo-form__input-Clave-icon {
+    display: flex;
+    background: #333;
+    width: 50px;
+    justify-content: center;
+    align-items: center;
+    transform: translate(34px);
+    outline: 1px solid #fff;
+    color: #fff;
+}
+
+.cuerpo-form__input-Id-icon {
+    grid-column: 1 / 2;
+    grid-row: 3 / 4;
+}
+
+.cuerpo-form__input-Id {
+    grid-column: 2 / 3;
+    grid-row: 3 / 4;
+    padding-left: 10px;
+    width: 380px;
+    outline: 1px solid #fff;
+}
+
+.cuerpo-form__input-Clave-icon {
+    grid-column: 1 / 2;
+    grid-row: 4 / 5;
+}
+
+.cuerpo-form__input-Clave {
+    grid-column: 2 / 3;
+    grid-row: 4 / 5;
+    padding-left: 10px;
+    width: 380px;
+    outline: 1px solid #fff;
+}
+
+.cuerpo-form__input-Sumit {
+    grid-column: 1 / 3;
+    grid-row: 5 / 6;
+    width: 380px;
+    color: #0f9;
+    background: rgb(122,73,235);
+    background: linear-gradient(90deg, rgba(122,73,235,1) 22%, rgba(29,238,113,1) 81%);
+    border: 1px solid #eee;
+}
+
+.cuerpo-form__input-Sumit:hover {
+    cursor: pointer;
+    filter: brightness(0.85);
+}
+
+.cuerpo-form__MensajeRegistro {
+    grid-column: 1 / 3;
+    grid-row: 6 / 7;
+    width: 380px;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+}
+
+.cuerpo-form__input-RegistroButton {
+    grid-column: 1 / 3;
+    grid-row: 7 / 8;
+    display: flex;
+    width: 380px;
+    color: #f00;
+    background: #fff;
+    border: 1px solid #f00;
+    text-decoration: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.cuerpo-form__input-RegistroButton:hover {
+    filter: brightness(0.95);
+}

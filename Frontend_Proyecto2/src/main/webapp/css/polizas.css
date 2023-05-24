@@ -1,0 +1,106 @@
+
+.cuerpo {
+    grid-row: 2 / 3;
+    background: url(https://a-static.besthdwallpaper.com/gran-turismo-sport-lamborghini-veneno-wallpaper-1280x768-21465_13.jpg);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    display: flex;
+    height: 80vh;
+    color: #fff;
+    flex-direction: column;
+}
+
+span {
+    color: #fff;
+}
+
+.cuerpo-form i {
+    display: grid;
+    align-content: center;
+}
+
+.cuerpo-form {
+    display: grid; 
+    background: rgba(0,0,0,0.8);
+    width: 400px;
+    height: 500px;
+    margin: 50px auto;
+    align-self: center;
+    text-align: center;
+    border-radius: 5px;
+    outline: 2px solid #999;
+    grid-template-rows: 75px repeat(5, 1fr) 75px;
+    grid-template-columns: 50px 1fr;
+}
+
+.cuerpo-form__titulo {
+    grid-column: 1 / 3;
+    grid-row: 1 / 2;
+    letter-spacing: 2px;
+}
+
+.cuerpo-form__icon {
+    grid-column: 1 / 2;
+    align-self: center;
+    justify-self: end;
+    background: #333;
+    outline: 1px solid #fff;
+    color: #fff;
+    width: 30px;
+    height: 30px;
+}
+
+.cuerpo-form__input {
+    align-self: center;
+    outline: 1px solid #fff;
+    margin-right: 20px;
+    height: 30px;
+    padding-left: 10px;
+}
+
+#marca{
+    color: #666;
+}
+
+.cuerpo-form__radio {
+    grid-column: 1 / 3;
+    grid-row: 6 / 7;
+    align-self: center;
+    justify-self: center;
+}
+
+.radio{
+    margin: 4px;
+    align-self: center;
+    border: 3px;
+    color: #000;
+}
+
+#iconCheck {
+    margin-right: 10px;
+    position: absolute;
+    translate: -35px -8px;
+}
+
+.cuerpo-form__Submit {
+    grid-row: 7 / 8;
+    grid-column: 1 / 3;
+    width: 300px;
+    height: 50px;
+    justify-self: center;
+    align-self: center;
+    color: #0f9;
+    background: rgb(122,73,235);
+    background: linear-gradient(90deg, rgba(122,73,235,1) 22%, rgba(29,238,113,1) 81%);
+    border: 1px solid #eee;
+}
+
+.cuerpo-form__Submit:hover {
+    cursor: pointer;
+    filter: brightness(0.85);
+}
+.placa_container{
+    display:flex;
+    
+}

@@ -1,0 +1,79 @@
+
+.cuerpo {
+    grid-row: 2 / 3;
+    background-image: url(https://wieck-honda-production.s3.amazonaws.com/photos/a1a640b1c7fef62dd1d8d2c9de72e3ea21cf058f/preview-928x522.jpg);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    display: flex;
+    height: 80vh;
+    flex-direction:column;
+}
+
+.cuerpo-form {
+    background-color: rgba(0,0,0,0.8);
+    width: 60vw;
+    height: 70vh;
+    margin: auto;
+    border-radius: 5px;
+    outline: 2px solid #fff;
+    display: grid;
+    grid-template-rows: 100px 1fr 100px;
+    overflow-x: auto;
+    color:white;
+}
+
+.cuerpo-form__titulo {
+    grid-row: 1 / 2;
+    align-self: center;
+    justify-self: center;
+}
+
+.cuerpo-form__table {
+    grid-row: 2 / 3;
+    align-self: center;
+    justify-self: center;
+    background: rgba(0,0,0,0.5);
+    width: 50%;
+    border-radius: 5px;
+}
+
+.cuerpo-form__table tbody {
+    overflow-y: auto;
+    max-height: 300px; 
+}
+
+.cuerpo-form__table-cuerpo td {
+  padding: 10px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.cuerpo-form__info {
+    grid-row: 2 / 3;
+    align-self: center;
+    justify-self: center;
+}
+
+.cuerpo-form__input {
+    margin: 15px;
+}
+
+.cuerpo-form__submit {
+    grid-row: 3 / 4;
+    align-self: center;
+    justify-self: center;
+    width: 380px;
+    height: 50px;
+    color: #0f9;
+    background: rgb(122,73,235);
+    background: linear-gradient(90deg, rgba(122,73,235,1) 22%, rgba(29,238,113,1) 81%);
+    border: 1px solid #eee;
+}
+
+.cuerpo-form__submit:hover {
+    cursor: pointer;
+    filter: brightness(0.85);
+}
+
+
