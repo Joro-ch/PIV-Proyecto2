@@ -21,15 +21,15 @@ import jakarta.ws.rs.core.Context;
 
 @Path("/login")
 @PermitAll
-public class Login {
+public class Login { 
     @Context
     HttpServletRequest request;
     
     @POST
-    @Consumes({MediaType.APPLICATION_JSON})
+    @Consumes(MediaType.APPLICATION_JSON)
     @Produces({MediaType.APPLICATION_JSON})
     public Usuario login(Usuario user){
-        Usuario logged = null;
+        Usuario logged;
         try{
             logged = Service.instance().usuarioFind(user.getId());
             if(!logged.getClave().equals(user.getClave())) throw new Exception("Wrong password");
