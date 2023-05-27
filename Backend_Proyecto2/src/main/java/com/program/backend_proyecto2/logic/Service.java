@@ -46,12 +46,8 @@ public class Service {
         poDao = new PolizaDao(Database);
     }
 
-    public Usuario usuarioFind(String cedula,String clave) throws Exception{
-        if (clave.equals(usuarioDao.read(cedula).getClave())){
-            return usuarioDao.read(cedula);
-        }
-        return null;
-        // Falta verificar clave
+    public Usuario usuarioFind(String cedula) throws Exception{
+        return usuarioDao.read(cedula);
     }
     
     public void usuarioAdd(Usuario usuario) throws Exception {
