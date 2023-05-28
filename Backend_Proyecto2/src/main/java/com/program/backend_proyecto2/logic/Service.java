@@ -22,6 +22,7 @@ public class Service {
         }
         return uniqueInstance; 
     }
+    
     DataBase Database;
     UsuarioDao usuarioDao;
     ClienteDao clienteDao;

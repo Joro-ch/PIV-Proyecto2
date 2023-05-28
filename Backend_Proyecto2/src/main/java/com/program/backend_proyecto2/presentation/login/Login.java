@@ -4,6 +4,7 @@
  */
 package com.program.backend_proyecto2.presentation.login;
 
+import com.program.backend_proyecto2.logic.Cliente;
 import com.program.backend_proyecto2.logic.Service;
 import com.program.backend_proyecto2.logic.Usuario;
 import jakarta.annotation.security.PermitAll;
@@ -11,6 +12,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.NotAcceptableException;
 import jakarta.ws.rs.NotFoundException;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Produces;
@@ -45,5 +48,23 @@ public class Login {
         HttpSession session = request.getSession(true);
         session.removeAttribute("user");
         session.invalidate();   
+    }
+    
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Cliente getClienteData() {
+        Usuario usuario = (Usuario) request.getSession().getAttribute("user");
+        if (usuario != null) {
+            try {
+                Cliente aux = Service.instance().clienteFind(usuario);
+                return aux;
+            } catch (Exception ex) {
+                throw new NotAcceptableException();
+            }
+        } 
+        else {
+            // Manejar el caso en el que no haya usuario en la sesión
+            throw new NotAcceptableException();
+        }
     }
 }

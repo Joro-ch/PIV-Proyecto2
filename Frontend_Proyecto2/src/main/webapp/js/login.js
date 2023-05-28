@@ -1,4 +1,4 @@
-var backend="http://localhost:8080/Backend_Proyecto2/api";
+
 
 document.addEventListener("DOMContentLoaded", function() {
   // Crear el elemento div
@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function() {
     <input class="cuerpo-form__input-Id cuerpo-form__item" autocomplete="off" type="text" id="id" placeholder="Ingrese su Cédula" name="id" required>
     <i class="fas fa-key cuerpo-form__input-Clave-icon cuerpo-form__item"></i>
     <input class="cuerpo-form__input-Clave cuerpo-form__item" autocomplete="off" type="password" id="clave" placeholder="Ingrese su Clave" name="pass" required>
-    <input class="cuerpo-form__input-Sumit cuerpo-form__item" type="submit" value="Ingresar">
+    <input id = "ingresar" class="cuerpo-form__input-Sumit cuerpo-form__item" type="submit" value="Ingresar">
     <h4 class="cuerpo-form__MensajeRegistro cuerpo-form__item"> ¿No tienes cuenta? </h4>
     <a href="presentation/registro/show" class="cuerpo-form__input-RegistroButton cuerpo-form__item"> Registrarse </a>
   `;
@@ -81,6 +81,7 @@ document.addEventListener("DOMContentLoaded", function() {
       if (response.ok) {
         // Realizar acciones en caso de éxito
         alert("¡Inicio de sesión exitoso!");
+        this.cambiarPagina();
       } else {
         // Realizar acciones en caso de error
         alert("Error al iniciar sesión. Inténtalo nuevamente.");
@@ -92,3 +93,10 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   });
 });
+
+function cambiarPagina() {
+    // Cambia la página actual a otra URL
+    window.location.href = '/Frontend_Proyecto2/presentation/cliente/miCuenta/View.html';
+}
+
+      
