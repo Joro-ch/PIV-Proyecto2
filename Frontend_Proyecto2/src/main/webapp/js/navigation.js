@@ -59,7 +59,7 @@ class Navigation {
 
         const navUsuarioLogin = `
             <div class="nav-usuario">
-                <a href="presentation/login/View.html"><i class="fas fa-user"></i> Login</a>
+                <a href="presentation/login/"><i class="fas fa-user"></i> Login</a>
             </div>
         `;
         if(this.usuario !== null){

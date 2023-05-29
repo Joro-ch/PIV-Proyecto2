@@ -54,7 +54,7 @@ class miCuenta {
                     <i class = "fas fa-lock cuerpo-form__input-Id-icon cuerpo-DatosTarjeta__icon"></i>
                     <h4 class = "cuerpo-DatosTarjeta__item"> CVV: ${cliente.tarjeta.codigoSeguridad} </h4>
                 </div>
-                <a href = "/Frontend_Proyecto2/presentation/cliente/editarCuenta/View.html" class = "cuerpo-EditarButton"> Editar Datos </a>
+                <a href = "/Frontend_Proyecto2/presentation/cliente/editarCuenta/" class = "cuerpo-EditarButton"> Editar Datos </a>
             </div>
         </div>`;
         
