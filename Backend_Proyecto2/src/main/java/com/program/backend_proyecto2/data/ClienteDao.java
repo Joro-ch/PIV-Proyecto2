@@ -22,7 +22,7 @@ public class ClienteDao {
         String comando = "insert into clientes (usuario, nombre, telefono, correo, metodoPago) values (?,?,?,?,?)";
         
         PreparedStatement stm = db.prepareStatement(comando);
-        stm.setString(1, c.getId());
+        stm.setString(1, c.getUsuario().getId());
         stm.setString(2, c.getNombre());
         stm.setString(3, c.getTelefono());
         stm.setString(4, c.getCorreo());
@@ -66,7 +66,7 @@ public class ClienteDao {
         stm.setString(1, c.getNombre());
         stm.setString(2, c.getTelefono());
         stm.setString(3, c.getCorreo());
-        stm.setString(4, c.getId());
+        stm.setString(4, c.getUsuario().getId());
         
         int count = db.executeUpdate(stm);
         
@@ -79,7 +79,7 @@ public class ClienteDao {
         String comando = "delete from clientes where usuario=?";
         
         PreparedStatement stm = db.prepareStatement(comando);
-        stm.setString(1, c.getId());
+        stm.setString(1, c.getUsuario().getId());
         
         int count = db.executeUpdate(stm);
         
@@ -93,8 +93,8 @@ public class ClienteDao {
         MetodoPagoDao m = new MetodoPagoDao(db);
         Cliente c = new Cliente();
         
-        c.setId(rs.getString(alias + ".usuario"));
-        c.setClave(u.read(c.getId()).getClave());
+        c.getUsuario().setId(rs.getString(alias + ".usuario"));
+        c.getUsuario().setClave(u.read(c.getUsuario().getId()).getClave());
         c.setNombre(rs.getString(alias + ".nombre"));
         c.setTelefono(rs.getString(alias + ".telefono"));
         c.setCorreo(rs.getString(alias + ".correo"));

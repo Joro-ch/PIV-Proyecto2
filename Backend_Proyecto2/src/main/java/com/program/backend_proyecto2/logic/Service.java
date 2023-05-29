@@ -64,7 +64,7 @@ public class Service {
     }
 
     public void clienteUpdate(Cliente cliente) throws Exception{
-        usuarioDao.update(cliente);
+        usuarioDao.update(cliente.getUsuario());
         clienteDao.update(cliente);
     } 
 

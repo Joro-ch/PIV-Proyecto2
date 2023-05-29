@@ -10,7 +10,7 @@ public class Usuario {
     
     //  Métodos
 
-     public Usuario() {
+    public Usuario() {
         this.id = "";
         this.clave = "";
         this.tipo = 0;

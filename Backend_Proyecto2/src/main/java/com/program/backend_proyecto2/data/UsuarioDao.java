@@ -30,6 +30,7 @@ public class UsuarioDao {
     public Usuario read(String id) throws Exception {
         String comando = "select * from usuarios u where u.id=?";
         
+        
         PreparedStatement stm = db.prepareStatement(comando);
         stm.setString(1, id);
         
@@ -46,9 +47,12 @@ public class UsuarioDao {
     public void update(Usuario u) throws Exception {
         String comando = "update usuarios set clave=? where id=?";
         
+        String clave = u.getClave();
+        String id = u.getId();
+        
         PreparedStatement stm = db.prepareStatement(comando);
-        stm.setString(1, u.getClave());
-        stm.setString(2, u.getId());
+        stm.setString(1, clave);
+        stm.setString(2, id);
         
         int count = db.executeUpdate(stm);
         

@@ -35,9 +35,9 @@ class miCuenta {
                     <i class = "fas fa-user cuerpo-form__input-Id-icon cuerpo-DatosUsuario__icon"></i>
                     <h4 class = "cuerpo-DatosUsuario__item"> Nombre: ${cliente.nombre} </h4>
                     <i class = "fas fa-id-card cuerpo-form__input-Id-icon cuerpo-DatosUsuario__icon"></i>
-                    <h4 class = "cuerpo-DatosUsuario__item"> Cédula: ${cliente.id} </h4>
+                    <h4 class = "cuerpo-DatosUsuario__item"> Cédula: ${cliente.usuario.id} </h4>
                     <i class = "fas fa-key cuerpo-form__input-Id-icon cuerpo-DatosUsuario__icon"></i>
-                    <h4 class = "cuerpo-DatosUsuario__item"> Contraseña: ${cliente.clave} </h4>
+                    <h4 class = "cuerpo-DatosUsuario__item"> Contraseña: ${cliente.usuario.clave} </h4>
                     <i class = "fas fa-phone cuerpo-form__input-Id-icon cuerpo-DatosUsuario__icon"></i>
                     <h4 class = "cuerpo-DatosUsuario__item"> Télefono: ${cliente.telefono} </h4>
                     <i class = "fas fa-envelope cuerpo-form__input-Id-icon cuerpo-DatosUsuario__icon"></i>
@@ -54,7 +54,7 @@ class miCuenta {
                     <i class = "fas fa-lock cuerpo-form__input-Id-icon cuerpo-DatosTarjeta__icon"></i>
                     <h4 class = "cuerpo-DatosTarjeta__item"> CVV: ${cliente.tarjeta.codigoSeguridad} </h4>
                 </div>
-                <a href = "presentation/cliente/cuenta/editarCuenta/show" class = "cuerpo-EditarButton"> Editar Datos </a>
+                <a href = "/Frontend_Proyecto2/presentation/cliente/editarCuenta/View.html" class = "cuerpo-EditarButton"> Editar Datos </a>
             </div>
         </div>`;
         

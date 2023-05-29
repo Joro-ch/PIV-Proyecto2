@@ -3,7 +3,7 @@ package com.program.backend_proyecto2.logic;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Cliente extends Usuario {
+public class Cliente {
     
     // Atributos
     private Usuario usuario;
@@ -80,5 +80,4 @@ public class Cliente extends Usuario {
     public void setPolizas(List<Poliza> polizas) {
         this.polizas = polizas;
     }
-    
 }
