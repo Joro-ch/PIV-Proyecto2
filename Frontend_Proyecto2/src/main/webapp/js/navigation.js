@@ -31,7 +31,7 @@ class Navigation {
         const navLogo = `
             <div class="nav-logo">
                 <a class="nav-logo__imagen" href="/Frontend_Proyecto2/presentation/">
-                    <img src="/Proyectov1/images/logo.png" alt="">
+                    <img src="/Frontend_Proyecto2/images/logo.png" alt="">
                 </a>
                 <a class="nav-logo__titulo" href="/Frontend_Proyecto2/presentation/">Seguros Infinitos</a>
             </div>
@@ -108,9 +108,24 @@ class Navigation {
     }
 }
 // Función de logout
-function logout() {
+async function logout() {
+  try {
     sessionStorage.removeItem('user');
-    window.location.href = '/Frontend_Proyecto2/presentation/';
+
+    // Realizar la petición DELETE
+    const response = await fetch(`${backend}/login`, {
+      method: 'DELETE',
+    });
+
+    if (response.ok) {
+      // Redirigir a la página de inicio de sesión
+      window.location.href = '/Frontend_Proyecto2/presentation/';
+    } else {
+      console.error('No se pudo realizar el logout.');
+    }
+  } catch (error) {
+    console.error('Error al realizar el logout:', error);
+  }
 }
 
 $(document).ready(function() {
