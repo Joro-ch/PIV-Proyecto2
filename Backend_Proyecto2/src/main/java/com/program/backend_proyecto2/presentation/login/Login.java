@@ -33,6 +33,8 @@ public class Login {
             logged = Service.instance().usuarioFind(user.getId());
             if(!logged.getClave().equals(user.getClave())) throw new Exception("Wrong password");
             request.getSession(true).setAttribute("user", logged);
+            Usuario user2 = (Usuario)request.getSession().getAttribute("user");
+            System.out.println("Usuario almacenado en la sesión: " + user2.getId());
             return logged;
         } catch (Exception ex){
             throw new NotFoundException();

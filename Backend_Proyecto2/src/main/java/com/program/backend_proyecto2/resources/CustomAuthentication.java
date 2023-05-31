@@ -24,8 +24,9 @@ public class CustomAuthentication
     @Override
     public AuthenticationStatus validateRequest(HttpServletRequest request, HttpServletResponse response, HttpMessageContext context){
         Usuario user = (Usuario) request.getSession().getAttribute("user");
-        System.out.println("El usuario es:");
-        System.out.println(user);
+        if(user != null){
+            System.out.println("El usuario en el request: "+user.getId()+" y su tipo: "+user.getTipo());
+        }
         if(user!=null)
             return context.notifyContainerAboutLogin(
                 new Principal() {@Override public String getName(){return user.getId();}},
