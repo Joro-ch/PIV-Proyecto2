@@ -65,9 +65,10 @@ public class Service {
        clienteDao.create(cliente);
     }
 
-    public void clienteUpdate(Cliente cliente) throws Exception{
+    public void clienteUpdate(Cliente cliente) throws Exception {
         usuarioDao.update(cliente.getUsuario());
         clienteDao.update(cliente);
+        mpDao.update(cliente.getTarjeta());
     } 
 
     public void tarjetaAdd(MetodoPago mp) throws Exception {

@@ -31,7 +31,7 @@ class Navigation {
         const navLogo = `
             <div class="nav-logo">
                 <a class="nav-logo__imagen" href="/Frontend_Proyecto2/presentation/">
-                    <img src="/Proyectov1/images/logo.png" alt="">
+                    <img src="/Frontend_Proyecto2/images/logo.png" alt="">
                 </a>
                 <a class="nav-logo__titulo" href="/Frontend_Proyecto2/presentation/">Seguros Infinitos</a>
             </div>
@@ -63,7 +63,7 @@ class Navigation {
         if(this.usuario !== null){
             navUsuarioLogout = `
                 <div class="nav-usuario">
-                    <a href="presentation/login/logout"><i class="fas fa-user"></i> Logout from ${this.usuario.id} </a>
+                    <a id="logout-link" href=""><i class="fas fa-user"></i> Logout from ${this.usuario.id} </a>
                 </div>
             `;
         }else{
@@ -88,6 +88,14 @@ class Navigation {
         }
 
         document.body.insertBefore(header, document.body.firstChild);
+        
+        const logoutLink = document.getElementById('logout-link');
+        if (logoutLink) {
+                logoutLink.addEventListener('click', function(event) {
+                event.preventDefault();
+                logout();
+            });
+        }
     }
     generateFooter() {
         const footer = document.createElement('footer');
@@ -99,6 +107,27 @@ class Navigation {
         document.body.appendChild(footer);
     }
 }
+// Función de logout
+async function logout() {
+  try {
+    sessionStorage.removeItem('user');
+
+    // Realizar la petición DELETE
+    const response = await fetch(`${backend}/login`, {
+      method: 'DELETE',
+    });
+
+    if (response.ok) {
+      // Redirigir a la página de inicio de sesión
+      window.location.href = '/Frontend_Proyecto2/presentation/';
+    } else {
+      console.error('No se pudo realizar el logout.');
+    }
+  } catch (error) {
+    console.error('Error al realizar el logout:', error);
+  }
+}
+
 $(document).ready(function() {
   var headElements = '/Frontend_Proyecto2/presentation/Head.html';
   $.get(headElements, function(data) {
@@ -106,4 +135,8 @@ $(document).ready(function() {
   });
 });
 
-
+document.addEventListener("DOMContentLoaded", function() {
+    const navigation = new Navigation();
+    navigation.generateHeader();
+    navigation.generateFooter();
+});
