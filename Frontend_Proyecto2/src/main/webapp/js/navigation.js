@@ -63,7 +63,7 @@ class Navigation {
         if(this.usuario !== null){
             navUsuarioLogout = `
                 <div class="nav-usuario">
-                    <a href="presentation/login/logout"><i class="fas fa-user"></i> Logout from ${this.usuario.id} </a>
+                    <a id="logout-link" href=""><i class="fas fa-user"></i> Logout from ${this.usuario.id} </a>
                 </div>
             `;
         }else{
@@ -88,6 +88,14 @@ class Navigation {
         }
 
         document.body.insertBefore(header, document.body.firstChild);
+        
+        const logoutLink = document.getElementById('logout-link');
+        if (logoutLink) {
+                logoutLink.addEventListener('click', function(event) {
+                event.preventDefault();
+                logout();
+            });
+        }
     }
     generateFooter() {
         const footer = document.createElement('footer');
@@ -99,6 +107,12 @@ class Navigation {
         document.body.appendChild(footer);
     }
 }
+// Función de logout
+function logout() {
+    sessionStorage.removeItem('user');
+    window.location.href = '/Frontend_Proyecto2/presentation/';
+}
+
 $(document).ready(function() {
   var headElements = '/Frontend_Proyecto2/presentation/Head.html';
   $.get(headElements, function(data) {
@@ -106,4 +120,8 @@ $(document).ready(function() {
   });
 });
 
-
+document.addEventListener("DOMContentLoaded", function() {
+    const navigation = new Navigation();
+    navigation.generateHeader();
+    navigation.generateFooter();
+});
