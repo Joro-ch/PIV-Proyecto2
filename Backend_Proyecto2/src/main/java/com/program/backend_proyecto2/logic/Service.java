@@ -5,6 +5,7 @@ import com.program.backend_proyecto2.data.ClienteDao;
 import com.program.backend_proyecto2.data.CoberturaDao;
 import com.program.backend_proyecto2.data.CoberturasPolizasDao;
 import com.program.backend_proyecto2.data.DataBase;
+import com.program.backend_proyecto2.data.MarcaDao;
 import com.program.backend_proyecto2.data.MetodoPagoDao;
 import com.program.backend_proyecto2.data.UsuarioDao;
 import com.program.backend_proyecto2.data.ModeloDao;
@@ -33,7 +34,7 @@ public class Service {
     CoberturasPolizasDao cpDao;
     VehiculoDao veDao;
     PolizaDao poDao;
-    
+    MarcaDao marDao;
     private Service(){
         Database = new DataBase();
         usuarioDao = new UsuarioDao(Database);
@@ -45,6 +46,7 @@ public class Service {
         veDao = new VehiculoDao(Database);
         cpDao = new CoberturasPolizasDao(Database);
         poDao = new PolizaDao(Database);
+        marDao = new MarcaDao(Database);
     }
 
     public Usuario usuarioFind(String cedula) throws Exception{
@@ -168,6 +170,10 @@ public class Service {
      public Vehiculo checkPlaca(String placa)throws Exception{
         System.out.println("Entra a checkPlaca de service");
         return veDao.read(placa);
+    }
+     
+    public void marcaAdd(Marca m)throws Exception{
+       marDao.create(m);
     }
 }
 

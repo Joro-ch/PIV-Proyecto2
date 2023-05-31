@@ -1,3 +1,10 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
 .fondo {
     background-image: url(https://tesla-cdn.thron.com/delivery/public/image/tesla/a269d7b4-87a9-4057-9ac5-2565e56a188e/bvlatuR/std/4096x2560/Homepage-Model-3-Desktop-LHD?quality=auto-medium&amp;format=auto);
     background-size: cover;
@@ -10,13 +17,14 @@
     
 }
 .cuerpo {
-    margin: 100px 0px;
     background-size: cover;
     background-position: center;
     display:flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: start;
+    min-height: 100vh;
+    min-width: 100vw;
 }
 
 .form_Boton{
@@ -25,7 +33,8 @@
 }
 
 #agregar{
-    width: 100%;
+    margin-top: 30px;
+    width: 40%;
     min-width: 400px;
     color: #000;
     border-color: #000;
@@ -121,4 +130,56 @@ tr:nth-child(even) {
     align-items: center;
     justify-content: center;
     padding: 10px 0;
+}
+
+.tabcontent{
+    display: none;
+}
+
+.tabcontent.show{
+    display:block;
+}
+#myModal{
+    display:none;
+}
+
+#myModal.show{
+    display: block;
+    position: absolute;
+    top:110px;
+    z-index: 100;
+}
+
+.tab{
+    background-color: transparent;
+}
+
+
+.tabcontent{
+    max-width:300px;
+    min-width: 300px;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: white;
+}
+#modeloForm,#brandForm{
+    display: flex;
+    flex-direction: column;
+}
+#modeloForm label,#brandForm label{
+    margin-top:5px;
+}
+
+#modeloForm label[type="submit"] {
+  margin-top: 10px;
+}
+.tablinks{
+    background-color: #d2d2d2;
+    border-radius: 5px;
+    padding: 2px;
+    
+}
+
+.tablinks.active{
+    background-color: white;
 }
