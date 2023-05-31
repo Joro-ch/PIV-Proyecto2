@@ -58,17 +58,10 @@ document.addEventListener("DOMContentLoaded", async function() {
       // Manejar la respuesta del backend
       if (response.ok) {
         // Realizar acciones en caso de éxito
-        this.cambiarPagina();
+        window.location.href = '/Frontend_Proyecto2/presentation/cliente/miCuenta/';
       } else {
         // Realizar acciones en caso de error
         alert("Error al iniciar sesión. Inténtalo nuevamente.");
       }
   });
 });
-
-function cambiarPagina() {
-    // Cambia la página actual a otra URL
-    window.location.href = '/Frontend_Proyecto2/presentation/cliente/miCuenta/';
-}
-
-      
