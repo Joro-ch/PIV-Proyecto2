@@ -7,6 +7,7 @@ package com.program.backend_proyecto2.presentation.admin.marcas;
 import com.program.backend_proyecto2.logic.Marca;
 import com.program.backend_proyecto2.logic.Service;
 import jakarta.annotation.security.PermitAll;
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.GET;
@@ -36,6 +37,7 @@ public class marcas {
     
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
+    @RolesAllowed({"2"})
     public void addMarca(Marca m) throws Exception{
         Service.instance().marcaAdd(m);
     }

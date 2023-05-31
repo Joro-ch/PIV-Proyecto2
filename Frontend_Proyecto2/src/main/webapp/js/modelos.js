@@ -121,7 +121,17 @@ class modelos{
         agregar.addEventListener('click', ()=>{
             modal.classList.add('show');
         });
-        
+        window.addEventListener("mousedown", function (event) {
+            var targetElement = event.target;
+
+            // Comprobar si el clic ocurrió dentro del modal o sus elementos hijos
+            var isClickInsideModal = modal.contains(targetElement);
+
+            // Si el clic ocurrió fuera del modal, cerrarlo
+            if (!isClickInsideModal) {
+                modal.classList.remove("show");
+            }
+        });
         var formMarca = document.getElementById('brandForm');
         var formModelo = document.getElementById('modeloForm');
         const modelTab = document.getElementById("modelTab");
