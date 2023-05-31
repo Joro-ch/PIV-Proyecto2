@@ -29,12 +29,12 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 
-document.addEventListener("DOMContentLoaded", async function() {
+document.addEventListener("DOMContentLoaded", function () {
   // Obtener el formulario de inicio de sesión
   var loginForm = document.querySelector(".cuerpo-form");
 
   // Agregar evento submit al formulario
-  loginForm.addEventListener("submit", async function(event) {
+  loginForm.addEventListener("submit", async function (event) {
     event.preventDefault();
 
     // Obtener los valores de los campos de entrada
@@ -44,31 +44,44 @@ document.addEventListener("DOMContentLoaded", async function() {
     // Construir el objeto de datos para enviar al backend
     var data = {
       id: id,
-      clave: clave
+      clave: clave,
     };
 
-    // Realizar la solicitud al backend utilizando Fetch
-    var response = await fetch(`${backend}/login`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(data)
-    });
-      // Manejar la respuesta del backend
-      if (response.ok) {
-        // Realizar acciones en caso de éxito
-        this.cambiarPagina();
-      } else {
-        // Realizar acciones en caso de error
-        alert("Error al iniciar sesión. Inténtalo nuevamente.");
-      }
+    try {
+      // Realizar la solicitud al backend utilizando Fetch
+        var response = await fetch(`${backend}/login`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        });
+
+        // Manejar la respuesta del backend
+        if (response.ok) {
+          // Obtener la respuesta como JSON
+            var u = await response.json();
+            sessionStorage.setItem('user', JSON.stringify(u));
+            cambiarPagina(u);
+        }else if(response.status === 404){
+            alert("usuario o contraseña incorrecto")
+        }else {
+          throw new Error("Error en la respuesta del servidor.");
+        }
+    } catch (error) {
+      console.error(error);
+    }
   });
 });
 
-function cambiarPagina() {
+
+function cambiarPagina(User) {
     // Cambia la página actual a otra URL
-    window.location.href = '/Frontend_Proyecto2/presentation/cliente/miCuenta/';
+    if(User.tipo === 2){
+        window.location.href = '/Frontend_Proyecto2/presentation/';
+    }else{
+        window.location.href = '/Frontend_Proyecto2/presentation/cliente/miCuenta/';
+    }
 }
 
       

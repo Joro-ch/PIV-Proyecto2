@@ -83,22 +83,24 @@ document.addEventListener("DOMContentLoaded", function() {
             },
             polizas: []
         };
-        
-        var response = await fetch(`${backend}/registro`, {
+        try{
+           var response = await fetch(`${backend}/registro`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json"
             },
             body: JSON.stringify(cliente)
-        });
+            });
         
-        if (response.ok) {
-        // Realizar acciones en caso de éxito
-            console.log(response);
-        } else {
-        // Realizar acciones en caso de error
-        alert("Error al iniciar sesión. Inténtalo nuevamente.");
-      }
+            if (response.ok) {
+            // Realizar acciones en caso de éxito
+                alert('Registro Exitoso');
+                window.location.href = '/Frontend_Proyecto2/presentation/login/';
+            } else {
+            // Realizar acciones en caso de error
+                alert("Error al registrarse");
+            }
+        }catch(error){console.log(error);}
       
       });
 });

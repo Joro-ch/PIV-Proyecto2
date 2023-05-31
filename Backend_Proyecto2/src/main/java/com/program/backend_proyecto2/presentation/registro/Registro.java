@@ -23,9 +23,12 @@ public class Registro {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces({MediaType.APPLICATION_JSON})
-    public Response registro(Cliente c){
-        System.out.println(c);
+    public Response registro(Cliente c) throws Exception{
+        Service.instance().usuarioAdd(c.getUsuario());
+        Service.instance().tarjetaAdd(c.getTarjeta());
+        Service.instance().clienteAdd(c);
         
-        return Response.ok().build();
+        String mensaje = "Registro exitoso"; // Mensaje que deseas enviar al frontend
+        return Response.ok().entity(mensaje).build();
     }
 }

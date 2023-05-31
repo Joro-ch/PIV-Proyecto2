@@ -14,11 +14,11 @@ class Usuario {
 }
 
 class Navigation {
-    constructor(usuario) {
-        if(usuario instanceof Usuario){
-            this.usuario = usuario;
-        }
-        else{
+    constructor() {
+        const user = sessionStorage.getItem('user');
+        if(user !==null){
+            this.usuario = JSON.parse(sessionStorage.getItem('user'));
+        }else{
             this.usuario = null;
         }
     }
@@ -30,10 +30,10 @@ class Navigation {
     generateHeader() {
         const navLogo = `
             <div class="nav-logo">
-                <a class="nav-logo__imagen" href="/Proyectov1/Inicio">
+                <a class="nav-logo__imagen" href="/Frontend_Proyecto2/presentation/">
                     <img src="/Proyectov1/images/logo.png" alt="">
                 </a>
-                <a class="nav-logo__titulo" href="/Proyectov1/Inicio">Seguros Infinitos</a>
+                <a class="nav-logo__titulo" href="/Frontend_Proyecto2/presentation/">Seguros Infinitos</a>
             </div>
         `;
 
@@ -56,18 +56,22 @@ class Navigation {
                 </ul>
             </div>
         `;
-
-        const navUsuarioLogin = `
+        
+        let navUsuarioLogout = '';
+        let navUsuarioLogin = '';
+        
+        if(this.usuario !== null){
+            navUsuarioLogout = `
+                <div class="nav-usuario">
+                    <a href="presentation/login/logout"><i class="fas fa-user"></i> Logout from ${this.usuario.id} </a>
+                </div>
+            `;
+        }else{
+            navUsuarioLogin = `
             <div class="nav-usuario">
                 <a href="presentation/login/"><i class="fas fa-user"></i> Login</a>
             </div>
         `;
-        if(this.usuario !== null){
-            const navUsuarioLogout = `
-                <div class="nav-usuario">
-                    <a href="presentation/login/logout"><i class="fas fa-user"></i> Logout from ${this.usuario.getId()} </a>
-                </div>
-            `;
         }
 
         const header = document.createElement('header');
@@ -75,9 +79,9 @@ class Navigation {
 
         header.appendChild(nav);
 
-        if (this.usuario !== null && this.usuario.getTipo() === 1) {
+        if (this.usuario !== null && this.usuario.tipo === 1) {
             nav.innerHTML = navLogo + navMenuCliente + navUsuarioLogout;
-        } else if (this.usuario !== null && this.usuario.getTipo() === 2) {
+        } else if (this.usuario !== null && this.usuario.tipo === 2) {
             nav.innerHTML = navLogo + navMenuAdmin + navUsuarioLogout;
         } else if (this.usuario === null) {
             nav.innerHTML = navLogo + navUsuarioLogin;
@@ -85,7 +89,6 @@ class Navigation {
 
         document.body.insertBefore(header, document.body.firstChild);
     }
-
     generateFooter() {
         const footer = document.createElement('footer');
         footer.classList.add('footer');
