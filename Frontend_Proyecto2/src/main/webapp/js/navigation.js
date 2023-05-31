@@ -61,12 +61,14 @@ class Navigation {
         let navUsuarioLogin = '';
         
         if(this.usuario !== null){
+            console.log("El usuario no es null");
             navUsuarioLogout = `
                 <div class="nav-usuario">
                     <a id="logout-link" href=""><i class="fas fa-user"></i> Logout from ${this.usuario.id} </a>
                 </div>
             `;
         }else{
+            console.log("El usuario es null");
             navUsuarioLogin = `
             <div class="nav-usuario">
                 <a href="presentation/login/"><i class="fas fa-user"></i> Login</a>

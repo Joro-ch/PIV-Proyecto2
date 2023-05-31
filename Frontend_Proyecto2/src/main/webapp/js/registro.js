@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
   // Agregar el contenido HTML al formulario de registro
   registroForm.innerHTML = `
-    <img class ="cuerpo-form__img" src="/Proyectov1/images/loginicon1.png" alt=""/>
+    <img class ="cuerpo-form__img" src="/Frontend_Proyecto2/images/loginicon1.png" alt=""/>
     <div class = "cuerpo-form__DatosUsuario">
         <h2 class ="cuerpo-form__DatosUsuario-titulo"> Datos del Cliente </h2>
         <i class = "fas fa-id-card cuerpo-form__input-icon"></i>
@@ -48,10 +48,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
 document.addEventListener("DOMContentLoaded", function() {
   // Obtener el formulario de inicio de sesión
-    var loginForm = document.querySelector(".cuerpo-form");
+    var registroForm = document.querySelector(".cuerpo-form");
 
     // Agregar evento submit al formulario
-    loginForm.addEventListener("submit", async function(event) {
+    registroForm.addEventListener("submit", async function(event) {
         event.preventDefault();
 
         var titular = document.getElementById("titular").value;
@@ -66,32 +66,31 @@ document.addEventListener("DOMContentLoaded", function() {
         var correo = document.getElementById("correo").value;
         
         
-        var cliente = {
-            usuario: {
-              id: id,
-              clave:clave,
-              tipo: 1
-            },
-            nombre: nombre,
-            telefono: telefono,
-            correo: correo,
-            tarjeta: {
-              titular: titular,
-              numTarjeta: numTarjeta,
-              fechaExp: fechaExp,
-              codigoSeguridad: codigoSeguridad
-            },
-            polizas: []
-        };
+        var clienteJSON = JSON.stringify({
+        "usuario": {
+            "id": id,
+            "clave": clave,
+            "tipo": 1
+        },
+        "nombre": nombre,
+        "telefono": telefono,
+        "correo": correo,
+        "tarjeta": {
+            "id_Titular": id,
+            "titular": titular,
+            "numTarjeta": numTarjeta,
+            "fechaExp": fechaExp,
+            "codigoSeguridad": codigoSeguridad
+        }
+    });
         try{
            var response = await fetch(`${backend}/registro`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json"
             },
-            body: JSON.stringify(cliente)
+            body: clienteJSON
             });
-        
             if (response.ok) {
             // Realizar acciones en caso de éxito
                 alert('Registro Exitoso');

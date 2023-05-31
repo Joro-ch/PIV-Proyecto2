@@ -13,11 +13,9 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 @Path("/registro")
 @PermitAll
-public class Registro {
-    @Context    
+public class Registro {   
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    @Produces({MediaType.APPLICATION_JSON})
     public Response registro(Cliente c) throws Exception{
         Service.instance().usuarioAdd(c.getUsuario());
         Service.instance().tarjetaAdd(c.getTarjeta());
