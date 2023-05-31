@@ -27,7 +27,7 @@ public class CustomAuthentication
         if(user!=null)
             return context.notifyContainerAboutLogin(
                 new Principal() {@Override public String getName(){return user.getId();}},
-                new HashSet<>(Arrays.asList(new String[]{"Cambiar el getTipo a String"})));
+                new HashSet<>(Arrays.asList(new String[]{Integer.toString(user.getTipo())})));
         else
            return context.notifyContainerAboutLogin(
                 new Principal() {@Override public String getName(){return "none";}},
