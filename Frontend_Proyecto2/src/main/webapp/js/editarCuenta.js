@@ -46,17 +46,25 @@ function renderEditarCliente(cliente) {
                     <i class = "fas fa-lock cuerpo-form__input-icon"></i>
                     <input class = "cuerpo-form__input" type="text" id="codigoSeguridad" autocomplete="off" value = "${cliente.tarjeta.codigoSeguridad}" name="codigoSeguridad" required>
                 </div>
-                <input id = "editarDatos" class = "cuerpo-form__Submit" type="submit" value="Editar">
+                <input id = "editarDatos" class = "cuerpo-form__Submit" type="button" value="Editar">
             </form>
         </div>`;
 
     const data = document.createElement('div');
     data.innerHTML = page;
     document.body.appendChild(data);
-    document.getElementById("editarDatos").addEventListener("submit", this.editarDatosCliente());
+    
+    // Obtén una referencia al botón de edición
+    const editarBoton = document.getElementById("editarDatos");
+
+    // Agrega el listener del evento 'click' al botón
+    editarBoton.addEventListener("click", function() {
+        editarDatosCliente();
+    });
 }
 
 function editarDatosCliente() {
+    
     var id = document.getElementById('id').value;
     var clave = document.getElementById('clave').value;
     var nombre = document.getElementById('nombre').value;
@@ -76,6 +84,7 @@ function editarDatosCliente() {
         "telefono": telefono,
         "correo": correo,
         "tarjeta": {
+            "id_Titular": id,
             "titular": titular,
             "numTarjeta": numTarjeta,
             "fechaExp": fechaExp,
@@ -83,16 +92,9 @@ function editarDatosCliente() {
         }
     });
 
-    const request = new Request(backend + "/editarCliente", {method: 'PUT', headers: {'Content-Type': 'application/json'}, 
+    const request = new Request(backend + "/editarCliente", {method: 'POST', headers: {'Content-Type': 'application/json'}, 
         body: cuenta_json});
-
-    (async ()=> {
-        const response = await fetch(request);
-        if (!response.ok) {
-            errorMessage(response.status);
-            return;
-        }
-    })(); 
-}
-
-
+    fetch(request);
+    
+    window.location.href = '/Frontend_Proyecto2/presentation/cliente/miCuenta/';
+};
