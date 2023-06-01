@@ -52,7 +52,7 @@ class Navigation {
                 <ul class="nav-menu__Items">
                     <li class="nav-menu__item"><a href="presentation/admin/clientes/show">Listado Clientes y Pólizas</a></li>
                     <li class="nav-menu__item"><a href="presentation/admin/modelos/">Modelos y Marcas</a></li>
-                    <li class="nav-menu__item"><a href="presentation/admin/categorias/show">Categorias y Coberturas</a></li>
+                    <li class="nav-menu__item"><a href="/Frontend_Proyecto2/presentation/admin/categorias/">Categorias y Coberturas</a></li>
                 </ul>
             </div>
         `;
