@@ -2,10 +2,12 @@ package com.program.backend_proyecto2.data;
 
 import com.program.backend_proyecto2.logic.Categoria;
 import com.program.backend_proyecto2.logic.Cliente;
+import com.program.backend_proyecto2.logic.Cobertura;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class CategoriaDao {
     
@@ -86,6 +88,9 @@ public class CategoriaDao {
             Categoria categoriaTemp = new Categoria(id, descripcion);
             categorias.add(categoriaTemp);
         }
+        
+        agregarCoberturas(categorias);
+        
         return categorias; 
     }
     
@@ -109,4 +114,17 @@ public class CategoriaDao {
         return c;
     }
 
+    public void agregarCoberturas(List<Categoria> categ) throws Exception {
+        CoberturaDao cobDao = new CoberturaDao(db);
+        List<Categoria> categorias = categ;
+        List<Cobertura> coberturas = cobDao.coberturas();
+            
+        for(Categoria cat:categorias) {
+            for(Cobertura cob:coberturas) {
+                if(cob.getCategoria().equals(Integer.valueOf(cat.getId()))) {
+                    cat.addCobertura(cob);
+                }
+            }
+        }
+    }
 }

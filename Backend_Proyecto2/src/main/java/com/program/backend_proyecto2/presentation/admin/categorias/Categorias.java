@@ -40,7 +40,12 @@ public class Categorias {
     @Path("/coberturasAdd")
     @Consumes(MediaType.APPLICATION_JSON)
     //@RolesAllowed({"2"})
-    public void addCobertura(Cobertura c) throws Exception{
-        Service.instance().coberturaAdd(c);
+    public void addCobertura(Cobertura c) {
+        try {
+            Service.instance().coberturaAdd(c);
+        }
+        catch(Exception ex) {
+            throw new NotAcceptableException();
+        }
     }
 }
