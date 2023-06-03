@@ -56,16 +56,17 @@ function agregarCategoriasExistentes() {
         categorias.forEach(function(c) {
             var row = `
                 <tr>
-                  <td class="table-image">
-                    <h3>${c.id}</h3>
-                  </td>
-                  <td class="table-calificacion">
-                    <h3>${c.descripcion}</h3>
-                  </td>
-                    <td class="table-coberturas" id = "coberturas">
-                  </td>
+                    <td class="table-image">
+                        <h3>${c.id}</h3>
+                    </td>
+                    <td class="table-calificacion">
+                        <h3>${c.descripcion}</h3>
+                    </td>
+                    <td class="table-coberturas" id="coberturas_${c.id}"> <!-- Agregar un identificador único -->
+                    </td>
                 </tr>
             `;
+
             tabla.innerHTML += row;
             agregarCoberturasExistentes(c);
         });
@@ -73,17 +74,18 @@ function agregarCategoriasExistentes() {
 }
 
 function agregarCoberturasExistentes(c) {
-    const tabla = document.getElementById("coberturas");
+    const tabla = document.getElementById(`coberturas_${c.id}`); // Acceder a la celda de coberturas correspondiente
     if (c) {
         var coberturas = c.coberturas;
         coberturas.forEach(function(co) {
             var row = `
-                <h3>  ${ co.descripcion } </h3>
+                <h3>  ${co.descripcion} </h3>
             `;
             tabla.innerHTML += row;
         });
     }
 }
+
 
 // Agregar Categorias
 // --------------------------------------------------------------------
