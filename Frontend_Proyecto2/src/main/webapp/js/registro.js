@@ -91,11 +91,14 @@ document.addEventListener("DOMContentLoaded", function() {
             },
             body: clienteJSON
             });
+            console.log(response);
             if (response.ok) {
-            // Realizar acciones en caso de éxito
-                alert('Registro Exitoso');
-                window.location.href = '/Frontend_Proyecto2/presentation/login/';
-            } else {
+                response.text().then(function(mensaje) {
+                  alert(mensaje); // Mostrar el mensaje de respuesta
+                  window.location.href = '/Frontend_Proyecto2/presentation/login/';
+                });
+            }
+            else {
             // Realizar acciones en caso de error
                 alert("Error al registrarse");
             }
