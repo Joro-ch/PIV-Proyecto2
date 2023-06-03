@@ -17,7 +17,7 @@ class modelos{
         const response = await fetch(request);
 
         if (!response.ok) {
-            errorMessage(response.status);
+            alert(response.status+" Error en la solicitud");
             return;
         }
 
@@ -34,7 +34,7 @@ class modelos{
         const response = await fetch(request);
 
         if (!response.ok) {
-            errorMessage(response.status);
+            alert(response.status+" Error en la solicitud");
             return;
         }
         
