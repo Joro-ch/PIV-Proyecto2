@@ -83,7 +83,7 @@ class modelos{
               <div id="modelContent" class="tabcontent show" >
                 <form id="modeloForm">
                     <label for="brand">Marca:</label>
-                    <select id="brand" name="marca">
+                    <select id="brand" name="marca" required>
                     ${this.marcas.map((marca) => `
                         <option value="${marca}">${marca}</option>
                     `                
@@ -91,11 +91,11 @@ class modelos{
                     }
                     </select>
                     <label for="model">Modelo:</label>
-                    <input type="text" id="model" name="modelo">
+                    <input type="text" id="model" name="modelo" required>
                     <label for="year">Año: </label>
-                    <input type="text" id="year" name="anio">
+                    <input type="text" id="year" name="anio" required>
                     <label for="image">Imagen(JPG):</label>
-                    <input type="file" id="image" name="imagen" accept="image/jpeg">
+                    <input type="file" id="image" name="imagen" accept="image/jpeg" required>
                     <input type="submit" value="Aceptar">
                 </form>
               </div>
@@ -103,7 +103,7 @@ class modelos{
               <div id="brandContent" class="tabcontent">
                 <form id="brandForm">
                   <label for="brandName">Brand Name:</label>
-                  <input type="text" id="brandName" name="marca">
+                  <input type="text" id="brandName" name="marca" required>
                   <input type="submit" value="Aceptar">
                 </form>
               </div>

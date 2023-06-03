@@ -17,11 +17,11 @@ public class MetodoPagoDao {
     // Métodos
     
     public void create(MetodoPago m) throws Exception {
-        String comando = "insert into metodosDePago (idTitular, numTarjeta,titular, fechaExp, codigoSeguridad) values (?,?,?,?,?)";
+        String comando = "insert into metodosDePago (idTitular,titular,numTarjeta, fechaExp, codigoSeguridad) values (?,?,?,?,?)";
         PreparedStatement stm = db.prepareStatement(comando);
-        stm.setString(1, m.getId_Titular());   
-        stm.setString(2, m.getNumTarjeta());
-        stm.setString(3, m.getTitular());
+        stm.setString(1, m.getId_Titular());  
+        stm.setString(2, m.getTitular());
+        stm.setString(3, m.getNumTarjeta());
         stm.setString(4, m.getFechaExp());
         stm.setString(5, m.getCodigoSeguridad());
         
