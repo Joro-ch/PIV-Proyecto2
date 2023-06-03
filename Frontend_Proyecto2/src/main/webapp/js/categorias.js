@@ -1,8 +1,10 @@
 
-function getCategorias() {
+getCategorias();
+
+async function getCategorias() {
     const request = new Request(backend + "/categorias", {method: 'GET', headers: {'Content-Type': 'application/json'}});
 
-    (async ()=> {
+    (async () => {
         const response = await fetch(request);
 
         if (!response.ok) {
@@ -11,8 +13,8 @@ function getCategorias() {
         }
 
         var categorias = await response.json();
-        sessionStorage.setItem("categorias", categorias);
-    })(); 
+        sessionStorage.setItem("categorias", JSON.stringify(categorias));
+    })();
 }
 
 // Listado de Categorias
@@ -26,7 +28,7 @@ function renderListadoCategorias() {
                 <thead class="cuerpo-tabla__encabezado">
                     <tr> <td class="td-1"> ID </td> <td> Descripcion </td>  <td> Coberturas </td> </tr>
                 </thead>
-                <tbody class="cuerpo-tabla__cuerpo">
+                <tbody id = "cuerpo_tabla" class="cuerpo-tabla__cuerpo">
                 </tbody>
             </table>  
             <a class="cuerpo-tabla__categoriaButton" href="/Frontend_Proyecto2/presentation/admin/categorias/agregarCat/"> Agregar Categoria </a>
@@ -38,7 +40,52 @@ function renderListadoCategorias() {
     data.classList.add('cuerpo');
     data.innerHTML = page;
     document.body.appendChild(data);
+    agregarCategoriasExistentes();
 }
+
+function agregarCategoriasExistentes() {
+    
+    getCategorias();
+    
+    var categorias = sessionStorage.getItem("categorias");
+    const tabla = document.getElementById("cuerpo_tabla");
+
+    if (categorias) {
+        categorias = JSON.parse(categorias); // Convertir a objeto JavaScript
+
+        categorias.forEach(function(c) {
+            var row = `
+                <tr>
+                    <td class="table-image">
+                        <h3>${c.id}</h3>
+                    </td>
+                    <td class="table-calificacion">
+                        <h3>${c.descripcion}</h3>
+                    </td>
+                    <td class="table-coberturas" id="coberturas_${c.id}"> <!-- Agregar un identificador único -->
+                    </td>
+                </tr>
+            `;
+
+            tabla.innerHTML += row;
+            agregarCoberturasExistentes(c);
+        });
+    }
+}
+
+function agregarCoberturasExistentes(c) {
+    const tabla = document.getElementById(`coberturas_${c.id}`); // Acceder a la celda de coberturas correspondiente
+    if (c) {
+        var coberturas = c.coberturas;
+        coberturas.forEach(function(co) {
+            var row = `
+                <h3>  ${co.descripcion} </h3>
+            `;
+            tabla.innerHTML += row;
+        });
+    }
+}
+
 
 // Agregar Categorias
 // --------------------------------------------------------------------
@@ -59,15 +106,15 @@ function renderAgregarCategorias() {
     document.body.appendChild(data);
     
     // Obtén una referencia al botón de edición
-    const editarBoton = document.getElementById("submit");
+    const agregarBoton = document.getElementById("submit");
 
     // Agrega el listener del evento 'click' al botón
-    editarBoton.addEventListener("click", function() {
+    agregarBoton.addEventListener("click", function() {
         agregarCategorias();
     });
 }
 
-function agregarCategorias() {
+async function agregarCategorias() {
     var descripcion = document.getElementById('descripcion').value;
     
     var categoria = JSON.stringify({
@@ -78,7 +125,10 @@ function agregarCategorias() {
     
     const request = new Request(backend + '/categorias/add', {method: 'POST', headers: {'Content-Type': 'application/json'}, 
         body: categoria});
-    fetch(request);
+        
+    await fetch(request); // Esperar a que la solicitud se complete
+    
+    await getCategorias(); // Esperar a que se obtengan las categorías actualizadas
     
     window.location.href = '/Frontend_Proyecto2/presentation/admin/categorias/';
 }
@@ -88,14 +138,11 @@ function agregarCategorias() {
 
 function renderAgregarCoberturas() {
     const page = `
-        <form class = "cuerpo-form" action = "./presentation/admin/categorias/agregarCob" method = "POST" > 
+        <form class = "cuerpo-form" action = "" method = "POST" > 
             <h1 class = "cuerpo-form__titulo"> Cobertura </h1>
             <i class = "fas fa-list cuerpo-form__icon"></i>
             <select class = "cuerpo-form__input" id = "categoria" name = "categoria" required>
                 <option value="" disabled selected>Seleccione una Categoria</option>
-                <% for(Categoria c:categorias) { %>
-                <option id = "categoria" value="<%=c.getId()%>"> <%=c.getId()%> - <%=c.getDescripcion()%> </option>
-                <% } %>
             </select>
             <i class = "fas fa-pen cuerpo-form__icon"></i>
             <input class = "cuerpo-form__input" type = "text" id = "descripcion" name = "descripcion" placeholder = "Ingrese la Descripción" autocomplete = "off" required>
@@ -103,7 +150,7 @@ function renderAgregarCoberturas() {
             <input class = "cuerpo-form__input" type = "text" id = "costoMinimo" name = "costo minimo" placeholder = "Ingrese el Costo Mínimo" autocomplete = "off" required>
             <i class = "fas fa-percent cuerpo-form__icon"></i>
             <input class = "cuerpo-form__input" type = "text" id = "costoPorcentual" name = "costo porcentual" placeholder = "Ingrese el Costo Porcentual" autocomplete = "off" required>
-            <input class = "cuerpo-form__submit" type="submit" value = "Agregar">
+            <input class = "cuerpo-form__submit" type="button" id = "coberturas_Button" value = "Agregar">
         </form>
     `;
 
@@ -111,4 +158,57 @@ function renderAgregarCoberturas() {
     data.classList.add('cuerpo');
     data.innerHTML = page;
     document.body.appendChild(data);
+    agregarOpcionesCategorias();
+    
+    // Obtén una referencia al botón de edición
+    const agregarBoton = document.getElementById("coberturas_Button");
+
+    // Agrega el listener del evento 'click' al botón
+    agregarBoton.addEventListener("click", function() {
+        agregarCoberturas();
+    });
+}
+
+function agregarOpcionesCategorias() {
+    getCategorias();
+
+    var categorias = sessionStorage.getItem("categorias");
+    const tabla = document.getElementById("categoria");
+
+    if (categorias) {
+        categorias = JSON.parse(categorias); // Convertir a objeto JavaScript
+
+        categorias.forEach(function(c) {
+            var row = `
+                <option id="categoria" value="${c.id}">${c.id} - ${c.descripcion}</option>
+            `;
+            tabla.innerHTML += row;
+        });
+    }
+}
+
+async function agregarCoberturas() {
+    var categoria = document.getElementById('categoria').value;
+    var descripcion = document.getElementById('descripcion').value;
+    var costoMinimo = document.getElementById('costoMinimo').value;
+    var costoPorcentual = document.getElementById('costoPorcentual').value;
+    
+    var coberturaJSON = JSON.stringify({
+        "id": "",
+        "descripcion": descripcion,
+        "costoMinimo": costoMinimo,
+        "costoPorcentual": costoPorcentual,
+        "categoria": categoria
+    });
+    
+    const request = new Request(backend + '/categorias/coberturasAdd/', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: coberturaJSON
+    });
+    
+    await fetch(request); // Esperar a que la solicitud se complete
+    await getCategorias(); // Esperar a que se obtengan las categorías actualizadas
+    
+    window.location.href = '/Frontend_Proyecto2/presentation/admin/categorias/';
 }

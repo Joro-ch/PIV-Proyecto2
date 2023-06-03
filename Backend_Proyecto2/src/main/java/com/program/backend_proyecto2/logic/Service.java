@@ -35,6 +35,7 @@ public class Service {
     VehiculoDao veDao;
     PolizaDao poDao;
     MarcaDao marDao;
+    
     private Service(){
         Database = new DataBase();
         usuarioDao = new UsuarioDao(Database);
