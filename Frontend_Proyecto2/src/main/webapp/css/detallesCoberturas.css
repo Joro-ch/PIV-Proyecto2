@@ -1,0 +1,35 @@
+
+.cuerpo {
+    grid-row: 2 / 3;
+    background-image: url(https://images7.alphacoders.com/478/478453.jpg);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    text-align: center;
+    color: #fff;
+}
+
+.cuerpo-fondo {
+    background-color: rgba(0,0,0,0.5);
+    width: 80vw;
+    height: 60vh;
+    margin: auto;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    font-size: 15px;
+}
+
+.cuerpo-fondo h3 {
+    margin: 30px; 
+}
+
+.cuerpo-fondo a {
+    text-decoration: none;
+    color: #0f0;
+}
+
+.cuerpo-fondo a:hover {
+    text-decoration: none;
+    color: #070;
+}

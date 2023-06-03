@@ -1,6 +1,7 @@
 package com.program.backend_proyecto2;
 
 import com.program.backend_proyecto2.presentation.admin.categorias.Categorias;
+import com.program.backend_proyecto2.presentation.admin.coberturas.Coberturas;
 import com.program.backend_proyecto2.presentation.admin.marcas.marcas;
 import com.program.backend_proyecto2.presentation.admin.modelos.modelos;
 import com.program.backend_proyecto2.presentation.cliente.polizas.Vehiculos;
@@ -26,6 +27,7 @@ public class JakartaRestConfiguration extends Application {
         classes.add(marcas.class);
         classes.add(Categorias.class);
         classes.add(Vehiculos.class);
+        classes.add(Coberturas.class);
         return classes;
     }   
 }
