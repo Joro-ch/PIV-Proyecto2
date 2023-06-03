@@ -45,13 +45,11 @@ function renderListadoCategorias() {
 
 function agregarCategoriasExistentes() {
     
-    getCategorias();
-    
     var categorias = sessionStorage.getItem("categorias");
     const tabla = document.getElementById("cuerpo_tabla");
 
     if (categorias) {
-        categorias = JSON.parse(categorias); // Convertir a objeto JavaScript
+        categorias = JSON.parse(categorias); 
 
         categorias.forEach(function(c) {
             var row = `
@@ -62,7 +60,7 @@ function agregarCategoriasExistentes() {
                     <td class="table-calificacion">
                         <h3>${c.descripcion}</h3>
                     </td>
-                    <td class="table-coberturas" id="coberturas_${c.id}"> <!-- Agregar un identificador único -->
+                    <td class="table-coberturas" id="coberturas_${c.id}">
                     </td>
                 </tr>
             `;
@@ -77,15 +75,32 @@ function agregarCoberturasExistentes(c) {
     const tabla = document.getElementById(`coberturas_${c.id}`); // Acceder a la celda de coberturas correspondiente
     if (c) {
         var coberturas = c.coberturas;
-        coberturas.forEach(function(co) {
-            var row = `
-                <h3>  ${co.descripcion} </h3>
-            `;
-            tabla.innerHTML += row;
+        coberturas.forEach(function (co) {
+            var input = document.createElement('input');
+            input.id = co.id;
+            input.className = "detallesCoberturas";
+            input.value = co.descripcion;
+            input.type = "button";
+            tabla.appendChild(input);
+            tabla.appendChild(document.createElement('br'));
+        });
+
+        // Agregar evento de clic a todos los elementos con la clase "detallesCoberturas"
+        var detallesCoberturasElements = document.querySelectorAll('.detallesCoberturas');
+        detallesCoberturasElements.forEach(function (element) {
+            element.addEventListener('click', function (event) {
+                var clickedId = event.target.id; // Obtener el id del elemento que se ha presionado
+                findCoberturaById(clickedId);
+                
+                window.location.href = '/Frontend_Proyecto2/presentation/admin/categorias/detalles/';
+
+                setTimeout(function () {
+                    window.location.reload();
+                }, 100);
+             });
         });
     }
 }
-
 
 // Agregar Categorias
 // --------------------------------------------------------------------
@@ -131,6 +146,10 @@ async function agregarCategorias() {
     await getCategorias(); // Esperar a que se obtengan las categorías actualizadas
     
     window.location.href = '/Frontend_Proyecto2/presentation/admin/categorias/';
+    
+    setTimeout(function () {
+        window.location.reload();
+    }, 500);
 }
 
 // Agregar Coberturas
@@ -170,7 +189,6 @@ function renderAgregarCoberturas() {
 }
 
 function agregarOpcionesCategorias() {
-    getCategorias();
 
     var categorias = sessionStorage.getItem("categorias");
     const tabla = document.getElementById("categoria");
@@ -212,3 +230,22 @@ async function agregarCoberturas() {
     
     window.location.href = '/Frontend_Proyecto2/presentation/admin/categorias/';
 }
+
+function findCoberturaById(coberturaId) {
+    const categorias = JSON.parse(sessionStorage.getItem("categorias"));
+
+    if (!categorias) {
+        return null; // Si no hay categorías almacenadas, devuelve null
+    }
+
+    const coberturas = categorias.flatMap(categoria => categoria.coberturas);
+
+    for (let i = 0; i < coberturas.length; i++) {
+        if (coberturas[i].id === coberturaId) {
+            sessionStorage.setItem("coberturaActual", JSON.stringify(coberturas[i]));
+            return coberturas[i];
+        }
+    }
+    return null; // Si no se encuentra la cobertura, se devuelve null
+}
+

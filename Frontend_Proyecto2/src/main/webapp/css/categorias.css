@@ -107,3 +107,28 @@
   overflow-x: auto;
   white-space: nowrap;
 }
+
+/*----------------------------------------------------------------------------*/
+
+.detallesCoberturas {
+    display: inline-block;
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    font-size: inherit;
+    cursor: pointer;
+}
+
+.detallesCoberturas:hover {
+    color: #777;
+}
+
+.detallesCoberturas:focus {
+    outline: none;
+}
+
+
+

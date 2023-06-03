@@ -122,7 +122,7 @@ public class CategoriaDao {
         for(Categoria cat:categorias) {
             for(Cobertura cob:coberturas) {
                 if(cob.getCategoria().equals(Integer.valueOf(cat.getId()))) {
-                    cat.addCobertura(cob);
+                    cat.getCoberturas().add(cob);
                 }
             }
         }
