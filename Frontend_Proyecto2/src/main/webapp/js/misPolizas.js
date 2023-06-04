@@ -36,7 +36,7 @@ const generaMisPolizas = () => {
                                         <td><img src="data:image/jpg;base64,${poliza.vehiculo.modelo.imagenBase64}" alt="My Image" witdh="150" height="150"></td>
                                         <td>${poliza.valorSeguro}</td>
                                         <td>  
-                                           <a class="ver-poliza" href="#" data-poliza-codigo="${poliza.codigo}"><img src="/Proyectov1/images/ver.png" alt="My Image" height="30" width="30"></a>
+                                           <a class="ver-poliza" href="#" data-poliza-codigo="${poliza.codigo}"><img src="/Frontend_Proyecto2/images/ver.png" alt="My Image" height="30" width="30"></a>
                                         </td>
                                     </tr>
                                 `).join('')}                                      

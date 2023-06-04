@@ -68,6 +68,7 @@ async function obtenerPolizasCliente(cliente) {
       throw new Error('Error al obtener las pólizas del cliente');
     }
     const polizas = await response.json();
+    console.log(polizas);
     renderPolizas(polizas);
   } catch (error) {
     console.error(error);
@@ -93,7 +94,7 @@ const renderPolizas = (polizas) => {
             ${polizas.map(poliza => `
               <tr>
                 <td>${poliza.codigo}</td>
-                <td>${poliza.vehiculo.modelo.modelo} - ${poliza.vehiculo.modelo}</td>
+                <td>${poliza.vehiculo.modelo.modelo} - ${poliza.vehiculo.anio}</td>
                 <td>${poliza.valorSeguro}</td>
                 <td>${poliza.plazoPagos}</td>
                 <td>${poliza.fechaInicioVigencia}</td>
