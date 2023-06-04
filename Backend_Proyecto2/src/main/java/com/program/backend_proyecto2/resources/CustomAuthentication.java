@@ -12,6 +12,7 @@ import jakarta.security.enterprise.authentication.mechanism.http.HttpAuthenticat
 import jakarta.security.enterprise.authentication.mechanism.http.HttpMessageContext;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.security.Principal;
 import java.sql.Array;
 import java.util.Arrays;
@@ -23,18 +24,33 @@ public class CustomAuthentication
 
     @Override
     public AuthenticationStatus validateRequest(HttpServletRequest request, HttpServletResponse response, HttpMessageContext context){
-        Usuario user = (Usuario) request.getSession().getAttribute("user");
-        if(user != null){
-            System.out.println("El usuario en el request: "+user.getId()+" y su tipo: "+user.getTipo());
+        HttpSession session = request.getSession(false);
+        if (session != null) {
+            Usuario user = (Usuario) session.getAttribute("user");
+
+            if (user != null) {
+                System.out.println("El usuario en el request: " + user.getId() + " y su tipo: " + user.getTipo());
+                return context.notifyContainerAboutLogin(
+                    new Principal() {
+                        @Override
+                        public String getName() {
+                            return user.getId();
+                        }
+                    },
+                    new HashSet<>(Arrays.asList(Integer.toString(user.getTipo())))
+                );
+            }
         }
-        if(user!=null)
-            return context.notifyContainerAboutLogin(
-                new Principal() {@Override public String getName(){return user.getId();}},
-                new HashSet<>(Arrays.asList(new String[]{Integer.toString(user.getTipo())})));
-        else
-           return context.notifyContainerAboutLogin(
-                new Principal() {@Override public String getName(){return "none";}},
-                new HashSet<>()); 
+
+        return context.notifyContainerAboutLogin(
+            new Principal() {
+                @Override
+                public String getName() {
+                    return "none";
+                }
+            },
+            new HashSet<>()
+        );
     }
         
     
