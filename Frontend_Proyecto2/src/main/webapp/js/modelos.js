@@ -17,7 +17,7 @@ class modelos{
         const response = await fetch(request);
 
         if (!response.ok) {
-            errorMessage(response.status);
+            alert(response.status+" Error en la solicitud");
             return;
         }
 
@@ -34,7 +34,7 @@ class modelos{
         const response = await fetch(request);
 
         if (!response.ok) {
-            errorMessage(response.status);
+            alert(response.status+" Error en la solicitud");
             return;
         }
         
@@ -64,7 +64,7 @@ class modelos{
                                   <td>${modelo.modelo}</td>
                                   <td>${modelo.anio}</td>
                                   <td>
-                                    <img src="data:image/jpg;base64,${modelo.imagenBase64}" alt="My Image">
+                                    <img src="data:image/jpg;base64,${modelo.imagenBase64}" alt="My Image" witdh="150" height="150">
                                   </td>
                                 </tr>
                               `).join('')}                              

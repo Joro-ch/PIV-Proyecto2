@@ -11,18 +11,9 @@
 
         <script>
             document.addEventListener('DOMContentLoaded', function() {
-                renderListadoCategorias();
-                window.onload = function() {
-                    // Verificar si la página ya ha sido cargada anteriormente
-                    if (!sessionStorage.getItem('paginaCargada')) {
-                        setTimeout(function () {
-                            window.location.reload();
-                        }, 50);
-
-                        // Establecer el indicador de página cargada en el almacenamiento local
-                        sessionStorage.setItem('paginaCargada', 'true');
-                    }
-                };
+                setTimeout(function () {
+                    renderListadoCategorias();
+                }, 50);
             });
         </script>
         

@@ -4,6 +4,7 @@ import com.program.backend_proyecto2.logic.Categoria;
 import com.program.backend_proyecto2.logic.Cobertura;
 import com.program.backend_proyecto2.logic.Service;
 import jakarta.annotation.security.PermitAll;
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.NotAcceptableException;
@@ -19,44 +20,18 @@ public class Categorias {
     
     @GET
     @Produces({MediaType.APPLICATION_JSON})
+    @RolesAllowed({"2"})
     public List<Categoria> getList() throws Exception {
         return Service.instance().getCategorias();
-    }
-    
-    
-    @POST
-    @Path("/getCobertura")
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
-    public Cobertura getCobertura(Cobertura co) {
-        try {
-            return null;
-        }
-        catch(Exception ex) {
-            throw new NotAcceptableException();
-        }
     }
     
     @POST
     @Path("/add")
     @Consumes(MediaType.APPLICATION_JSON)
-    //@RolesAllowed({"2"})
+    @RolesAllowed({"2"})
     public void addCatgoria(Categoria c) {
         try {
             Service.instance().categoriaAdd(c);
-        }
-        catch(Exception ex) {
-            throw new NotAcceptableException();
-        }
-    }
-    
-    @POST
-    @Path("/coberturasAdd")
-    @Consumes(MediaType.APPLICATION_JSON)
-    //@RolesAllowed({"2"})
-    public void addCobertura(Cobertura c) {
-        try {
-            Service.instance().coberturaAdd(c);
         }
         catch(Exception ex) {
             throw new NotAcceptableException();
