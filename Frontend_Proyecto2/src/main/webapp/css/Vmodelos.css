@@ -48,6 +48,7 @@
     background: linear-gradient(90deg, rgba(29,238,113,1) 22%, rgba(122,73,235,1) 81%);    filter: brightness(0.85);
 }
 table {
+  margin: 50px;
   border-collapse: collapse;
   width: 75%;
   overflow-y: scroll;

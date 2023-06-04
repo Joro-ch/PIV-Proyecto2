@@ -3,6 +3,7 @@ package com.program.backend_proyecto2.presentation.admin.coberturas;
 import com.program.backend_proyecto2.logic.Cobertura;
 import com.program.backend_proyecto2.logic.Service;
 import jakarta.annotation.security.PermitAll;
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.NotAcceptableException;
 import jakarta.ws.rs.POST;
@@ -29,7 +30,7 @@ public class Coberturas {
     @POST
     @Path("/coberturasAdd")
     @Consumes(MediaType.APPLICATION_JSON)
-    //@RolesAllowed({"2"})
+    @RolesAllowed({"2"})
     public void addCobertura(Cobertura c) {
         try {
             Service.instance().coberturaAdd(c);

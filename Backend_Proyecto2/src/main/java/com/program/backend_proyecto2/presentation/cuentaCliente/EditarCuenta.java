@@ -3,6 +3,7 @@ package com.program.backend_proyecto2.presentation.cuentaCliente;
 import com.program.backend_proyecto2.logic.Cliente;
 import com.program.backend_proyecto2.logic.Service;
 import jakarta.annotation.security.PermitAll;
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.NotFoundException;
 import jakarta.ws.rs.POST;
@@ -14,6 +15,7 @@ import jakarta.ws.rs.core.MediaType;
 public class EditarCuenta {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
+    @RolesAllowed({"1"})
     public void actualizarCliente(Cliente c) {
         try {
             Service.instance().clienteUpdate(c);

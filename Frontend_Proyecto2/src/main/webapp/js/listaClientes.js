@@ -58,7 +58,6 @@ function renderListaClientes(clientes) {
   document.body.appendChild(data);
 }
 async function obtenerPolizasCliente(cliente) {
-    console.log(cliente)
   try {
     const request = new Request(backend + `/polizas/cliente/${cliente}`, {
         method: 'GET',
@@ -69,7 +68,7 @@ async function obtenerPolizasCliente(cliente) {
       throw new Error('Error al obtener las pólizas del cliente');
     }
     const polizas = await response.json();
-    console.log(polizas);
+    renderPolizas(polizas);
   } catch (error) {
     console.error(error);
   }
