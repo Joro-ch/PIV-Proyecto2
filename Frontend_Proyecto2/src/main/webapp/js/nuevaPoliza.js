@@ -211,7 +211,7 @@ const generaParte3 = () =>{
                     <select class = "form-input_final" id="metodoPago" name="metodoPago" required>
                         <option value="" selected disabled>Seleccione un método de pago</option>
                         <option value="acepta">
-                          1111
+                          ${cliente.tarjeta.numTarjeta}
                         </option>
                     </select>
                     <input class = "form-submit_final" type="submit" value="Aceptar"/>
@@ -274,7 +274,6 @@ const getPrice = async () => {
         
         poliza = await response.json();
         getDataCliente();
-        generaParte3();
     })();
 };
 
@@ -291,6 +290,7 @@ const getDataCliente = () => {
 
         cliente = await response.json();
         console.log(cliente);
+        generaParte3();
     })(); 
 };
 

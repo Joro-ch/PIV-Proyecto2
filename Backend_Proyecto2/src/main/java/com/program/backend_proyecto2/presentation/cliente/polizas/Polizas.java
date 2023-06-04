@@ -43,6 +43,7 @@ public class Polizas {
     @Consumes({MediaType.APPLICATION_JSON})
     @Path("/add")
     public void addPoliza(Poliza p) throws Exception {
+        Service.instance().vehiculoAdd(p.getVehiculo());
         Service.instance().polizaAdd(p);
     }
 }
