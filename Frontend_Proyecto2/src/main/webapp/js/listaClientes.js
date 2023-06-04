@@ -14,6 +14,7 @@ function getListaClientes() {
       }
 
       const clientes = await response.json();
+      console.log(clientes)
       renderListaClientes(clientes);
     } catch (error) {
       console.error(error);
@@ -41,7 +42,7 @@ function renderListaClientes(clientes) {
                 <td>${cliente.telefono}</td>
                 <td>${cliente.correo}</td>
                 <td>
-                  <a href="javascript:void(0)" onclick="obtenerPolizasCliente('${cliente.id}')">
+                  <a href="javascript:void(0)" onclick="obtenerPolizasCliente('${cliente.usuario.id}')">
                     <img src="/Frontend_Proyecto2/images/poliza.png" alt="My Image" height="30" width="30">
                   </a>
                 </td>
@@ -57,7 +58,7 @@ function renderListaClientes(clientes) {
   document.body.appendChild(data);
 }
 async function obtenerPolizasCliente(cliente) {
-    console.log(cliente);
+    console.log(cliente)
   try {
     const request = new Request(backend + `/polizas/cliente/${cliente}`, {
         method: 'GET',
