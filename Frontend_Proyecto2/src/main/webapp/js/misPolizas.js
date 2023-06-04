@@ -5,16 +5,27 @@
 //Primero se va a hacer un fetch al servidor en busca de todas las polizas que tenga de cliente al usuario en sesion.
 //Al terminar el fetch se va a llamar al html y se van a mostrar las polizas
 //Se va a tener un modal en donde se van a meter los datos de una poliza al darle click. En esta poliza hay que pedir un poco m[as de datos de la poliza.
-
+var polizasFiltradas;
 var polizas;
 var container;
 var modal;
 var modalContent;
+
+const filtraPolizas = (placa) => {
+    polizasFiltradas = polizas.filter((poliza) => poliza.vehiculo.numPlaca.includes(placa));
+    generaMisPolizas();
+};
 const generaMisPolizas = () => {
   const contenido = `
   <div class = "fondo">
             <div class = "cuerpo">
-                <table class="table-misPolizas">
+                <div class="busqueda table-misPolizas">
+                    <form class = "cuerpo-form"> 
+                        <input class = "busqueda_input" type="text" autocomplete="off" placeholder="Placa del Vehiculo" name="placa">
+                        <input class = "busqueda_boton" type="submit" value="Buscar">                    
+                    </form>
+                </div>
+                <table>
                         <thead>
                                 <tr>
                                         <th>Numero</th>
@@ -27,7 +38,7 @@ const generaMisPolizas = () => {
                                 </tr>
                         </thead>
                         <tbody>
-                                ${polizas.map((poliza) => `
+                                ${polizasFiltradas.map((poliza) => `
                                     <tr>
                                         <td>${poliza.codigo}</td>
                                         <td>${poliza.vehiculo.numPlaca}</td>
@@ -75,7 +86,13 @@ const generaMisPolizas = () => {
         });
     });
     //Para cerrar el modal
-    
+    const formBusqueda = document.querySelector('.cuerpo-form');
+    formBusqueda.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const inputPlaca = document.querySelector('.busqueda_input');
+            const placa = inputPlaca.value.trim();
+            filtraPolizas(placa);
+    });
     
 };
 
@@ -128,7 +145,7 @@ const getPolizas = () => {
 
         polizas = await response.json();
         console.log(polizas);
-        generaMisPolizas();
+        filtraPolizas('');
     })(); 
     
 };
