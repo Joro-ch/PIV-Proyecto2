@@ -174,6 +174,7 @@ class modelos{
                     // Hubo un error en la solicitud
                     // Manejar el error según sea necesario
                     alert("Hubo un error en la solicitud.");
+                    window.location.reload();
                 }
             } catch (error) {
                 // Hubo un error de red u otro tipo de error
@@ -210,6 +211,7 @@ class modelos{
                     // Hubo un error en la solicitud
                     // Manejar el error según sea necesario
                     alert("Hubo un error en la solicitud.");
+                    window.location.reload();
                 }
             } catch (error) {
                 // Hubo un error de red u otro tipo de error
