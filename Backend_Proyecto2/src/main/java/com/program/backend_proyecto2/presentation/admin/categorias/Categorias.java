@@ -23,20 +23,6 @@ public class Categorias {
         return Service.instance().getCategorias();
     }
     
-    
-    @POST
-    @Path("/getCobertura")
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
-    public Cobertura getCobertura(Cobertura co) {
-        try {
-            return null;
-        }
-        catch(Exception ex) {
-            throw new NotAcceptableException();
-        }
-    }
-    
     @POST
     @Path("/add")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -44,19 +30,6 @@ public class Categorias {
     public void addCatgoria(Categoria c) {
         try {
             Service.instance().categoriaAdd(c);
-        }
-        catch(Exception ex) {
-            throw new NotAcceptableException();
-        }
-    }
-    
-    @POST
-    @Path("/coberturasAdd")
-    @Consumes(MediaType.APPLICATION_JSON)
-    //@RolesAllowed({"2"})
-    public void addCobertura(Cobertura c) {
-        try {
-            Service.instance().coberturaAdd(c);
         }
         catch(Exception ex) {
             throw new NotAcceptableException();

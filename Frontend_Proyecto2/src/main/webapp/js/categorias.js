@@ -219,7 +219,7 @@ async function agregarCoberturas() {
         "categoria": categoria
     });
     
-    const request = new Request(backend + '/categorias/coberturasAdd/', {
+    const request = new Request(backend + '/coberturas/add/', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: coberturaJSON
@@ -233,7 +233,7 @@ async function agregarCoberturas() {
 
 function findCoberturaById(coberturaId) {
     const categorias = JSON.parse(sessionStorage.getItem("categorias"));
-
+    
     if (!categorias) {
         return null; // Si no hay categorías almacenadas, devuelve null
     }

@@ -29,7 +29,7 @@ public class Coberturas {
     }
     
     @POST
-    @Path("/coberturasAdd")
+    @Path("/add")
     @Consumes(MediaType.APPLICATION_JSON)
     //@RolesAllowed({"2"})
     public void addCobertura(Cobertura c) {
