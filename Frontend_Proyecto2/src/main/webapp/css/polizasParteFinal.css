@@ -1,5 +1,5 @@
 
-.cuerpo {
+.cuerpo_final {
     grid-row: 2 / 3;
     background-image: url(https://images5.alphacoders.com/834/834669.jpg);
     background-size: cover;
@@ -9,7 +9,7 @@
     color: #fff;
 }
 
-.cuerpo-fondo {
+.cuerpo-fondo_final {
     background-color: rgba(0,0,0,0.8);
     width: 70vw;
     height: 70vh;
@@ -21,11 +21,11 @@
     overflow: auto;
 }
 
-.cuerpo-titulo {
+.cuerpo-titulo_final {
     grid-row: 1 / 2;
 }
 
-.cuerpo-table {
+.cuerpo-table_final {
     grid-row: 2 / 3;
     align-self: center;
     justify-self: center;
@@ -38,24 +38,24 @@
     overflow: auto;
 }
 
-.cuerpo-table__span {
+.cuerpo-table__span_final {
     grid-row: 3 / 4;
     grid-column: 1 / 2;
 }
-.pPago{
+.pPago_final{
     margin-top: 20px;
 }
-.cuerpo-form {
+.cuerpo-form_final {
     grid-row: 4 / 5;
     display: grid;
     grid-template-rows: 20px repeat(3, 1fr);
 }
 
-.form-label {
+.form-label_final {
     grid-row: 1 / 2;
 }
 
-.form-input {
+.form-input_final {
     grid-row: 2 / 3;
     width: 380px;
     height: 30px;
@@ -63,7 +63,7 @@
     justify-self: center;
 }
 
-.form-submit {
+.form-submit_final {
     grid-row: 3 / 4;
     width: 380px;
     height: 30px;
@@ -75,12 +75,12 @@
     border: 1px solid #eee;
 }
 
-.form-submit:hover {
+.form-submit_final:hover {
     cursor: pointer;
     filter: brightness(0.85);
 }
 
-.form-cancelar {
+.form-cancelar_final {
     grid-row: 4 / 5;
     width: 380px;
     height: 30px;
@@ -95,7 +95,7 @@
     align-items: center;
 }
 
-.form-cancelar:hover {
+.form-cancelar_final:hover {
     cursor: pointer;
     filter: brightness(0.85);
 }
