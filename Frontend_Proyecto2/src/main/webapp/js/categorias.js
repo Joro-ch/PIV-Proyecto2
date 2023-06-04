@@ -96,7 +96,7 @@ function agregarCoberturasExistentes(c) {
 
                 setTimeout(function () {
                     window.location.reload();
-                }, 100);
+                }, 500);
              });
         });
     }

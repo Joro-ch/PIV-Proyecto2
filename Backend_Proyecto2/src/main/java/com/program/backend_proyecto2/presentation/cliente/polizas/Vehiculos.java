@@ -7,6 +7,7 @@ package com.program.backend_proyecto2.presentation.cliente.polizas;
 import com.program.backend_proyecto2.logic.Service;
 import com.program.backend_proyecto2.logic.Vehiculo;
 import jakarta.annotation.security.PermitAll;
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.POST;
@@ -27,6 +28,7 @@ public class Vehiculos {
     
     @POST
     @Consumes({MediaType.APPLICATION_JSON})
+    @RolesAllowed({"2","1"})
     public Boolean checkPlaca(Vehiculo v) throws Exception {
         Vehiculo aux = Service.instance().checkPlaca(v.getNumPlaca());
         return aux !=null;

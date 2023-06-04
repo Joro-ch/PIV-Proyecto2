@@ -32,12 +32,14 @@ public class modelos {
     
     @GET
     @Produces({MediaType.APPLICATION_JSON})
+    @RolesAllowed({"2","1"})
     public List<Modelo> getModelos() throws Exception{
        return Service.instance().getModelos();
     }
     
     @POST
     @Consumes({MediaType.MULTIPART_FORM_DATA})
+    @RolesAllowed({"2"})
     public void addModelo(@FormDataParam("modelo") String modelo,
             @FormDataParam("anio") String anio,
             @FormDataParam("marca") String marca,

@@ -41,7 +41,7 @@ class Navigation {
             <div class="nav-menu">
                 <ul class="nav-menu__Items">
                     <li class="nav-menu__item"><a href="presentation/cliente/polizas/comprarPoliza">Comprar</a></li>
-                    <li class="nav-menu__item"><a href="presentation/cliente/polizas/misPolizas/show">Mis Polizas</a></li>
+                    <li class="nav-menu__item"><a href="presentation/cliente/polizas/misPolizas">Mis Polizas</a></li>
                     <li class="nav-menu__item"><a href="/Frontend_Proyecto2/presentation/cliente/miCuenta">Mi Cuenta</a></li>
                 </ul>
             </div>

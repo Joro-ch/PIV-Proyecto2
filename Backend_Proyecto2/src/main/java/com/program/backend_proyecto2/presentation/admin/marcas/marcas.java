@@ -30,6 +30,7 @@ public class marcas {
     
     @GET
     @Produces({MediaType.APPLICATION_JSON})
+    @RolesAllowed({"2","1"})
     public List<String> getMarcas() throws Exception{
         return Service.instance().getMarcas();
     }
