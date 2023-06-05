@@ -110,8 +110,8 @@ function renderAgregarCategorias() {
         <form class = "cuerpo-form" action = "" method = "POST">
             <h1 class = "cuerpo-form__titulo"> Categoria </h1>
             <i class = "fas fa-pen cuerpo-form__icon"></i>
-            <input class = "cuerpo-form__input" type = "text" id = "descripcion" placeholder = "Ingrese la Descripción" name = "descripcion" autocomplete = "off" required>
-            <input id = "submit" class = "cuerpo-form__submit" type = "button" value = "Agregar">
+            <input id = "descripcion" class = "cuerpo-form__input" placeholder = "Ingrese la Descripción" type = "text" autocomplete = "off" required>
+            <input id = "enviar" class = "cuerpo-form__submit" type = "button" value = "Agregar">
         </form>
     `;
 
@@ -121,15 +121,22 @@ function renderAgregarCategorias() {
     document.body.appendChild(data);
     
     // Obtén una referencia al botón de edición
-    const agregarBoton = document.getElementById("submit");
+    const agregarBoton = document.getElementById("enviar");
 
-    // Agrega el listener del evento 'click' al botón
     agregarBoton.addEventListener("click", function() {
         agregarCategorias();
+    });
+    
+    document.addEventListener("keydown", function(event) {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            agregarCategorias();
+        }
     });
 }
 
 async function agregarCategorias() {
+    
     var descripcion = document.getElementById('descripcion').value;
     
     var categoria = JSON.stringify({
