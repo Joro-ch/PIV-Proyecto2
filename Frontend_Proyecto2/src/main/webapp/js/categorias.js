@@ -139,6 +139,11 @@ async function agregarCategorias() {
     
     var descripcion = document.getElementById('descripcion').value;
     
+    if (descripcion === "" || await existeCategoria(descripcion) === 1) {
+        alert("Valor Invalido o Categoria ya Ingresada");
+        return;
+    }
+    
     var categoria = JSON.stringify({
         "id": "",
         "descripcion": descripcion,
@@ -193,13 +198,20 @@ function renderAgregarCoberturas() {
     agregarBoton.addEventListener("click", function() {
         agregarCoberturas();
     });
+    
+    document.addEventListener("keydown", function(event) {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            agregarCoberturas();
+        }
+    });
 }
 
 function agregarOpcionesCategorias() {
 
     var categorias = sessionStorage.getItem("categorias");
     const tabla = document.getElementById("categoria");
-
+    
     if (categorias) {
         categorias = JSON.parse(categorias); // Convertir a objeto JavaScript
 
@@ -217,6 +229,11 @@ async function agregarCoberturas() {
     var descripcion = document.getElementById('descripcion').value;
     var costoMinimo = document.getElementById('costoMinimo').value;
     var costoPorcentual = document.getElementById('costoPorcentual').value;
+    
+    if (categoria === "" || descripcion === "" || costoMinimo === "" || costoPorcentual === "") {
+        alert("Uno o varios valores inválidos");
+        return;
+    }
     
     var coberturaJSON = JSON.stringify({
         "id": "",
@@ -254,5 +271,20 @@ function findCoberturaById(coberturaId) {
         }
     }
     return null; // Si no se encuentra la cobertura, se devuelve null
+}
+
+async function existeCategoria(descripcion) {
+  return new Promise((resolve) => {
+    const categorias = JSON.parse(sessionStorage.getItem("categorias"));
+
+    for (let i = 0; i < categorias.length; i++) {
+      if (categorias[i].descripcion === descripcion) {
+        resolve(1); // Devuelve 1 si encuentra una categoría con la descripción especificada
+        return;
+      }
+    }
+
+    resolve(2); // Devuelve 2 si no encuentra ninguna categoría con la descripción especificada
+  });
 }
 
